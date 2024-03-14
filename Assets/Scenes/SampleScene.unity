@@ -318,7 +318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579680890}
-  - component: {fileID: 1579680889}
+  - component: {fileID: 1579680891}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -326,21 +326,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1579680889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579680888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c33c69e04e73849a37ebc4a26ff53b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  secs: 0
-  framesLeft: 0
-  waiting: 0
 --- !u!4 &1579680890
 Transform:
   m_ObjectHideFlags: 0
@@ -356,6 +341,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579680891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579680888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fa0e44d5fe12e439ee8670a8741724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantsList: []
+  plantsListCost: []
+  selectedPlant: 0
+  funds: 0
+  totalFunds: 0
+  plantCost: 0
+  plantName: 
+  plantCapacity: 5
+  namesList:
+  - Flower
+  - Cabbage
+  - Carrot
+  - Tulip
+  - Bush
+  - Cherry Tree
+  - Apple Tree
+  - Vine
+  - Rose
+  descriptionList:
+  - Luscious
+  - Royal
+  - Draconic
+  - Carnivorous
+  - Frozen
+  - Preserved
+  - Lovely
+  - Fresh
+  - Tasty
+  turnCountMax: 15
+  turnCount: 15
+  plantHealth: 
+  upgradeCost: 15
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
