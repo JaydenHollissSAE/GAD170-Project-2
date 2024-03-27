@@ -17,46 +17,28 @@ public class MainFunction : MonoBehaviour
     public string[] descriptionList = new string[] {"Luscious", "Royal", "Draconic", "Carnivorous", "Frozen", "Preserved", "Lovely", "Fresh", "Tasty"};
     public int turnCountMax = 15;
     public int turnCount = 0;
-    public List<int> plantHealth = new List<int>();
+    public List<int> plantAge = new List<int>();
     public float upgradeCost = 15;
     // Start is called before the first frame update
     void Start()
     {
         AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-        AddPlant();
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        AddPlant();
         if (turnCount >= turnCountMax)
         {
+            selectedPlant = Random.Range(0, plantsList.Count);
             SellPlant();
             if (funds >= upgradeCost)
             {
                 funds -= upgradeCost;
                 upgradeCost += upgradeCost + Random.Range(15, 40);
                 plantCapacity += 4;
+                turnCountMax += 15;
             }
         }
     }
@@ -67,14 +49,16 @@ public class MainFunction : MonoBehaviour
         plantCost = Random.Range(1f, 10f);
         plantsList.Add(plantName);
         plantsListCost.Add(plantCost);
-        plantHealth.Add(0);
+        plantAge.Add(0);
         if (plantsList.Count > plantCapacity) 
         {
+            selectedPlant = Random.Range(0, plantsList.Count);
             SellPlant();
         }
+        Debug.Log("Plants List: " + plantsList.Count);
         for (int i = 0; i < plantsList.Count; i++)
         {
-            if (plantHealth[i] <= 1)
+            if (plantAge[i] >= 16)
             {
                 plantsListCost[i] = 1;
                 selectedPlant = i;
@@ -82,7 +66,7 @@ public class MainFunction : MonoBehaviour
             }
             else
             {
-                plantHealth[i] += 1;
+                plantAge[i] += 1;
             }
         
         }
@@ -90,11 +74,11 @@ public class MainFunction : MonoBehaviour
     }
     public void SellPlant()
     {
-        Debug.Log(selectedPlant);
+        Debug.Log("Selected Plant: " + selectedPlant);
         plantsList.RemoveAt(selectedPlant);
         funds += plantsListCost[selectedPlant];
         totalFunds += funds;
         plantsListCost.RemoveAt(selectedPlant);
-        plantHealth.RemoveAt(selectedPlant);
+        plantAge.RemoveAt(selectedPlant);
     }
 }
