@@ -19,31 +19,59 @@ public class MainFunction : MonoBehaviour
     public int turnCount = 0;
     public List<int> plantAge = new List<int>();
     public float upgradeCost = 15;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject plant;
+    public GameObject[] plantsObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+    public GameObject destroyBuffer;
+
+    public void Start()
     {
+        turnCount = 0;
+        Debug.Log(plantsObjects.Length);
+        plantsObjects[0] = plant;
+        Debug.Log(plantsObjects.Length);
         AddPlant();
+        //plant.SetActive(false);
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        AddPlant();
+        //Debug.Log(turnCount);
+        //Debug.Log(turnCountMax);
+        plantsObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        //Debug.Log(plantsObjects.Length);
         if (turnCount >= turnCountMax)
         {
-            selectedPlant = Random.Range(0, plantsList.Count);
-            SellPlant();
-            if (funds >= upgradeCost)
+            if (plantsList.Count == 0)
             {
-                funds -= upgradeCost;
-                upgradeCost += upgradeCost + Random.Range(15, 40);
-                plantCapacity += 4;
-                turnCountMax += 15;
+                Debug.Log("Game Over");
+                Destroy(this.gameObject);
+            }
+            else {
+                Debug.Log("Testa");
+                selectedPlant = Random.Range(0, plantsList.Count);
+                SellPlant();
+                if (funds >= upgradeCost)
+                {
+                    funds -= upgradeCost;
+                    upgradeCost += upgradeCost + Random.Range(15, 40);
+                    plantCapacity += 4;
+                    turnCountMax += 15;
+                }
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                AddPlant();
             }
         }
     }
     public void AddPlant()
     {
+        Instantiate(plantsObjects[0], new Vector3(Random.Range(-6f, 6f), Random.Range(-6f, 6f), 0), Quaternion.identity);
         turnCount += 1;
         plantName = descriptionList[Random.Range(0, descriptionList.Length)] + " " + namesList[Random.Range(0,namesList.Length)];
         plantCost = Random.Range(1f, 10f);
@@ -74,6 +102,15 @@ public class MainFunction : MonoBehaviour
     }
     public void SellPlant()
     {
+        while (true)
+        {
+            destroyBuffer = plantsObjects[Random.Range(0, plantsObjects.Length)];
+            if (destroyBuffer.name.Contains("plant"))
+            {
+                break;
+            }
+        }
+        Destroy(destroyBuffer);
         Debug.Log("Selected Plant: " + selectedPlant);
         plantsList.RemoveAt(selectedPlant);
         funds += plantsListCost[selectedPlant];
