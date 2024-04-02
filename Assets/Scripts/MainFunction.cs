@@ -120,7 +120,7 @@ public class MainFunction : MonoBehaviour
                 break; //Cancels the while loop
             }
         }
-        Destroy(destroyBuffer); //Destroys the selected object by destroyBuffer in the scene
+        Destroy(destroyBuffer); //Destroys the object selected by destroyBuffer in the scene
         //Debug.Log("Selected Plant: " + selectedPlant); //Prints the value of selectedPlant for debugging
         plantsList.RemoveAt(selectedPlant); //Removes the item from plantsList at the position of selectedPlant to remove it from play
         funds += plantsListCost[selectedPlant]; //Adds the cost of the selected plant from plantsListCost to the player's funds
