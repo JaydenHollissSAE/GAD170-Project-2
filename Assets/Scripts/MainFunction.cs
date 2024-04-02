@@ -45,6 +45,10 @@ public class MainFunction : MonoBehaviour
         //Debug.Log(turnCount); //Prints the turn count for debugging
         //Debug.Log(turnCountMax); //Prints the max turn count for debugging
         plantsObjects = UnityEngine.Object.FindObjectsOfType<GameObject>(); //Finds all the objects in the scene and adds them to the plantsObjects list
+        if (!plantsObjects[0].name.Contains("plant")) //Checks if the first item in plantsObjects doesn't contain the word plant
+        {
+            plantsObjects[0] = plant; //Sets the first object in the objects list to plant
+        }
         //Debug.Log(plantsObjects.Length); //Prints the length of the plantsObjects List for debugging
         if (turnCount >= turnCountMax) //Checks if the turn count is above or equal to the max turn count
         {
@@ -88,6 +92,7 @@ public class MainFunction : MonoBehaviour
         plantsListCost.Add(plantCost); //Adds the plants cost to the plantsListCost list to store it as the cost of the plant in plantsList that has the same value as it
         plantAge.Add(0); //Adds the value of 0 in the plantAge list in the same position of the generated plant to store it as the age of the plant in plantsList that shares its position
         //Debug.Log("Plants List: " + plantsList.Count); //Prints the amount of plants in the plantsList for debugging
+        Debug.Log("You got a " + plantName + " worth " + plantCost); //Prints the plant name and cost
         for (int i = 0; i < plantsList.Count; i++) //Loops the contained code for every plant held within plantsList
         {
             if (plantAge[i] >= 16) //Checks if the selected plant's age is above or equal to 16
